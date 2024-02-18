@@ -11,7 +11,6 @@ export class SessionSerializer extends PassportSerializer {
         super();
     }
 
-    // @ts-ignore
     async serializeUser(
         user: PartialUser,
         done: (err: Error, id: number) => void,
@@ -20,7 +19,6 @@ export class SessionSerializer extends PassportSerializer {
         done(null, foundUser.id);
     }
 
-    // @ts-ignore
     async deserializeUser(
         userId: number,
         done: (err: Error, payload: PartialUser) => void,
