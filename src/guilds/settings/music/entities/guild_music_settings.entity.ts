@@ -24,7 +24,7 @@ export class GuildMusicSettings {
 
     @Column("bigint", {
         name: "music_queue_channel_id",
-        nullable: true
+        nullable: true,
     })
     musicQueueChannelId: number;
 

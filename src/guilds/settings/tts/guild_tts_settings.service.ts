@@ -2,21 +2,14 @@ import { Inject, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { GuildTtsSettings } from "./entities/guild_tts_settings.entity";
-import { IGuildService } from "src/guilds/guilds.service";
-
-export interface IGuildTtsSettingsService {
-    create(id: number): Promise<GuildTtsSettings>;
-    get(id: number): Promise<GuildTtsSettings | null>;
-    update(id: number, settings: GuildTtsSettings): Promise<GuildTtsSettings | null>;
-}
+import { GuildService } from "src/guilds/guilds.service";
 
 @Injectable()
-export class GuildTtsSettingsService implements IGuildTtsSettingsService {
+export class GuildTtsSettingsService {
     constructor(
         @InjectRepository(GuildTtsSettings)
         private readonly ttsSettingsRepository: Repository<GuildTtsSettings>,
-        @Inject("GUILD_SERVICE")
-        private readonly guildService: IGuildService,
+        private readonly guildService: GuildService,
     ) {}
 
     async create(id: number): Promise<GuildTtsSettings> {

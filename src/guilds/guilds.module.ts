@@ -7,16 +7,9 @@ import { GuildsController } from "./guilds.controller";
 
 @Global()
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([Guild]),
-        GuildSettingsModule
-    ],
+    imports: [TypeOrmModule.forFeature([Guild]), GuildSettingsModule],
     controllers: [GuildsController],
-    providers: [
-        {
-            provide: "GUILD_SERVICE",
-            useClass: GuildService,
-        }
-    ]
+    providers: [GuildService],
+    exports: [GuildService],
 })
 export class GuildsModule {}

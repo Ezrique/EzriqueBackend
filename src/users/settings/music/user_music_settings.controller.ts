@@ -1,14 +1,11 @@
 import { Controller, Get, Inject, Post, Req, UseGuards } from "@nestjs/common";
 import { Request } from "express";
 import { AuthenticatedGuard } from "src/auth.guards";
-import { IUserMusicSettingsService } from "./user_music_settings.service";
+import { UserMusicSettingsService } from "./user_music_settings.service";
 
 @Controller("users/music_settings")
 export class UserMusicSettingsController {
-    constructor(
-        @Inject("USER_MUSIC_SETTINGS_SERVICE")
-        private readonly settingsService: IUserMusicSettingsService,
-    ) {}
+    constructor(private readonly settingsService: UserMusicSettingsService) {}
 
     @Get()
     @UseGuards(AuthenticatedGuard)

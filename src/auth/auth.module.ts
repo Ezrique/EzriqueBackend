@@ -9,13 +9,6 @@ import { DiscordStrategy } from "./utils/discord.passport";
 @Module({
     imports: [TypeOrmModule.forFeature([User])],
     controllers: [AuthController],
-    providers: [
-        DiscordStrategy,
-        SessionSerializer,
-        {
-            provide: "AUTH_SERVICE",
-            useClass: AuthService,
-        },
-    ],
+    providers: [DiscordStrategy, SessionSerializer, AuthService],
 })
 export class AuthModule {}

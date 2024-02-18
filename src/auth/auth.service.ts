@@ -4,15 +4,8 @@ import { User } from "src/users/entities/user.entity";
 import { Repository } from "typeorm";
 import { PartialUser } from "./entities/user.entity";
 
-export interface IAuthService {
-    validate(partial: PartialUser): Promise<User>;
-    create(partial: PartialUser): Promise<User>;
-    update(partial: PartialUser): Promise<User>;
-    find(id: number): Promise<User>;
-}
-
 @Injectable()
-export class AuthService implements IAuthService {
+export class AuthService {
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,

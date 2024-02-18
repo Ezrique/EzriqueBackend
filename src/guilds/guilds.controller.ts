@@ -1,21 +1,15 @@
-import { Controller, Delete, Inject, Post, Req, Res, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Post, Req, Res, UseGuards } from "@nestjs/common";
 import { BotAuthGuard } from "src/auth.guards";
-import { IGuildService } from "./guilds.service";
+import { GuildService } from "./guilds.service";
 import { Request, Response } from "express";
 
 @Controller("guilds")
 export class GuildsController {
-    constructor(
-        @Inject("GUILD_SERVICE")
-        private readonly guildService: IGuildService
-    ) {}
+    constructor(private readonly guildService: GuildService) {}
 
     @Post()
     @UseGuards(BotAuthGuard)
-    async setupGuild(
-        @Req() request: Request,
-        @Res() response: Response,
-    ) {
+    async setupGuild(@Req() request: Request, @Res() response: Response) {
         if (!request.body)
             return response.status(400).json({ error: "No body provided" });
         if (!request.body["guild_id"])
@@ -30,10 +24,7 @@ export class GuildsController {
 
     @Delete()
     @UseGuards(BotAuthGuard)
-    async deleteGuild(
-        @Req() request: Request,
-        @Res() response: Response,
-    ) {
+    async deleteGuild(@Req() request: Request, @Res() response: Response) {
         if (!request.body)
             return response.status(400).json({ error: "No body provided" });
         if (!request.body["guild_id"])

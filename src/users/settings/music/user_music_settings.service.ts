@@ -4,17 +4,8 @@ import { Repository } from "typeorm";
 import { UserMusicSettings } from "./entities/user_music_settings.entity";
 import { PartialUser } from "src/auth/entities/user.entity";
 
-export interface IUserMusicSettingsService {
-    create(user: PartialUser): Promise<UserMusicSettings>;
-    get(user: PartialUser): Promise<UserMusicSettings>;
-    update(
-        user: PartialUser,
-        settings: UserMusicSettings,
-    ): Promise<UserMusicSettings>;
-}
-
 @Injectable()
-export class UserMusicSettingsService implements IUserMusicSettingsService {
+export class UserMusicSettingsService {
     constructor(
         @InjectRepository(UserMusicSettings)
         private readonly musicSettingsRepository: Repository<UserMusicSettings>,

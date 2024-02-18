@@ -7,11 +7,6 @@ import { UserMusicSettingsController } from "./user_music_settings.controller";
 @Module({
     imports: [TypeOrmModule.forFeature([UserMusicSettings])],
     controllers: [UserMusicSettingsController],
-    providers: [
-        {
-            provide: "USER_MUSIC_SETTINGS_SERVICE",
-            useClass: UserMusicSettingsService,
-        },
-    ],
+    providers: [UserMusicSettingsService],
 })
 export class UserMusicSettingsModule {}

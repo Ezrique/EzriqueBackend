@@ -1,14 +1,11 @@
 import { Controller, Get, Inject, Post, Req, UseGuards } from "@nestjs/common";
 import { Request } from "express";
 import { AuthenticatedGuard } from "src/auth.guards";
-import { IUserTtsSettingsService } from "./user_tts_settings.service";
+import { UserTtsSettingsService } from "./user_tts_settings.service";
 
 @Controller("users/tts_settings")
 export class UserTtsSettingsController {
-    constructor(
-        @Inject("USER_TTS_SETTINGS_SERVICE")
-        private readonly settingsService: IUserTtsSettingsService,
-    ) {}
+    constructor(private readonly settingsService: UserTtsSettingsService) {}
 
     @Get()
     @UseGuards(AuthenticatedGuard)

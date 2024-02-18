@@ -4,17 +4,8 @@ import { Repository } from "typeorm";
 import { UserTtsSettings } from "./entities/user_tts_settings.entity";
 import { PartialUser } from "src/auth/entities/user.entity";
 
-export interface IUserTtsSettingsService {
-    create(user: PartialUser): Promise<UserTtsSettings>;
-    get(user: PartialUser): Promise<UserTtsSettings>;
-    update(
-        user: PartialUser,
-        settings: UserTtsSettings,
-    ): Promise<UserTtsSettings>;
-}
-
 @Injectable()
-export class UserTtsSettingsService implements IUserTtsSettingsService {
+export class UserTtsSettingsService {
     constructor(
         @InjectRepository(UserTtsSettings)
         private readonly ttsSettingsRepository: Repository<UserTtsSettings>,

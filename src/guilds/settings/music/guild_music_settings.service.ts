@@ -2,21 +2,14 @@ import { Inject, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { GuildMusicSettings } from "./entities/guild_music_settings.entity";
-import { IGuildService } from "src/guilds/guilds.service";
-
-export interface IGuildMusicSettingsService {
-    create(id: number): Promise<GuildMusicSettings>;
-    get(id: number): Promise<GuildMusicSettings | null>;
-    update(id: number, settings: GuildMusicSettings): Promise<GuildMusicSettings | null>;
-}
+import { GuildService } from "src/guilds/guilds.service";
 
 @Injectable()
-export class GuildMusicSettingsService implements IGuildMusicSettingsService {
+export class GuildMusicSettingsService {
     constructor(
         @InjectRepository(GuildMusicSettings)
         private readonly musicSettingsRepository: Repository<GuildMusicSettings>,
-        @Inject("GUILD_SERVICE")
-        private readonly guildService: IGuildService,
+        private readonly guildService: GuildService,
     ) {}
 
     async create(id: number): Promise<GuildMusicSettings> {

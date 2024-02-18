@@ -2,17 +2,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Guild } from "./entities/guild.entity";
 import { Repository } from "typeorm";
 
-export interface IGuildService {
-    create(id: number): Promise<Guild>;
-    delete(id: number): Promise<void>;
-    find(id: number): Promise<Guild>;
-    has(id: number): Promise<boolean>;
-}
-
-export class GuildService implements IGuildService {
+export class GuildService {
     constructor(
         @InjectRepository(Guild)
-        private readonly guildRepository: Repository<Guild>
+        private readonly guildRepository: Repository<Guild>,
     ) {}
 
     async create(id: number): Promise<Guild> {

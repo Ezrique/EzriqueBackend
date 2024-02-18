@@ -7,11 +7,6 @@ import { UserTtsSettingsService } from "./user_tts_settings.service";
 @Module({
     imports: [TypeOrmModule.forFeature([UserTtsSettings])],
     controllers: [UserTtsSettingsController],
-    providers: [
-        {
-            provide: "USER_TTS_SETTINGS_SERVICE",
-            useClass: UserTtsSettingsService,
-        },
-    ],
+    providers: [UserTtsSettingsService],
 })
 export class UserTtsSettingsModule {}

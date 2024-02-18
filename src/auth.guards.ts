@@ -16,9 +16,11 @@ export class DiscordAuthGuard extends AuthGuard("discord") {
 export class BotAuthGuard extends AuthGuard("bot") {
     async canActivate(context: ExecutionContext) {
         const request: Request = context.switchToHttp().getRequest();
-        return request.headers.authorization === `${process.env.BOT_AUTHORIZATION} ${process.env.BOT_KEY}`;
+        return (
+            request.headers.authorization ===
+            `${process.env.BOT_AUTHORIZATION} ${process.env.BOT_KEY}`
+        );
     }
-
 }
 
 @Injectable()
